@@ -1,0 +1,115 @@
+title: Firmware Lab — Docs
+description: >-
+  Documentation for CADS-DEMO-firmware-lab — a browser-only IDE (VS Code for the Web + ST-Link
+  debugging + an AI tutor) for learning real STM32 firmware, no local toolchain install required.
+  Organized as tutorials (learn by doing), how-to guides (accomplish a task), reference (look up a
+  fact), and explanation (understand why) — the Diátaxis framework (https://diataxis.fr). Available
+  in English and German — every page has both, use the language toggle in the header.
+baseurl: "/CADS-DEMO-firmware-lab-docs"
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+plugins:
+  - jekyll-sitemap
+
+collections:
+  en-tutorials:
+    output: true
+    permalink: /en/tutorials/:path/
+  en-how-to:
+    output: true
+    permalink: /en/how-to/:path/
+  en-reference:
+    output: true
+    permalink: /en/reference/:path/
+  en-explanation:
+    output: true
+    permalink: /en/explanation/:path/
+  de-tutorials:
+    output: true
+    permalink: /de/tutorials/:path/
+  de-how-to:
+    output: true
+    permalink: /de/how-to/:path/
+  de-reference:
+    output: true
+    permalink: /de/reference/:path/
+  de-explanation:
+    output: true
+    permalink: /de/explanation/:path/
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+  - scope:
+      path: ""
+      type: en-tutorials
+    values:
+      section: tutorials
+      section_label: Tutorial
+      lang: en
+  - scope:
+      path: ""
+      type: en-how-to
+    values:
+      section: how-to
+      section_label: How-to
+      lang: en
+  - scope:
+      path: ""
+      type: en-reference
+    values:
+      section: reference
+      section_label: Reference
+      lang: en
+  - scope:
+      path: ""
+      type: en-explanation
+    values:
+      section: explanation
+      section_label: Explanation
+      lang: en
+  - scope:
+      path: ""
+      type: de-tutorials
+    values:
+      section: tutorials
+      section_label: Tutorial
+      lang: de
+  - scope:
+      path: ""
+      type: de-how-to
+    values:
+      section: how-to
+      section_label: How-to
+      lang: de
+  - scope:
+      path: ""
+      type: de-reference
+    values:
+      section: reference
+      section_label: Reference
+      lang: de
+  - scope:
+      path: ""
+      type: de-explanation
+    values:
+      section: explanation
+      section_label: Explanation
+      lang: de
+  - scope:
+      path: "en"
+    values:
+      lang: en
+  - scope:
+      path: "de"
+    values:
+      lang: de
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
