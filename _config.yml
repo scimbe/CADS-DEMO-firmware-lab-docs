@@ -110,6 +110,7 @@ defaults:
       lang: de
 
 exclude:
+  - scripts
   - README.md
   - Gemfile
   - Gemfile.lock
