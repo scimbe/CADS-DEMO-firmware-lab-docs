@@ -131,11 +131,6 @@ weiterlaufen, und die Firmware läuft auf dem Board weiter; die Statusleiste ver
 Markierung `GDB` und zeigt `läuft`. Nur wenn du den Kern selbst über das Board-Menü angehalten
 hast, bleibt er mit Warnfarbe angehalten, bis du dort *Weiterlaufen lassen* oder *Reset* wählst.
 
-<figure>
-<img src="{{ '/assets/28-debug-after-stop.png' | relative_url }}" alt="Nach dem Beenden: Statusleiste wieder Board: verbunden, läuft, ohne GDB-Markierung">
-<figcaption>Nach dem Beenden läuft das Board weiter. Eine beendete Debugsitzung lässt die Firmware nie angehalten zurück.</figcaption>
-</figure>
-
 
 Die zweite Konfiguration, **Attach CaDS Zero (Board im Browser, no flash)**, verbindet sich ohne
 Build und ohne Reset. Nutze sie, um eine laufende oder abgestürzte Firmware dort anzusehen, wo

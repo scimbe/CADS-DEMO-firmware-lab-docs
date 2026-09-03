@@ -127,11 +127,6 @@ firmware keeps running on the board; the status bar drops the `GDB` marker and s
 If you halted the core yourself from the board menu, it stays halted with a warning colour
 until you choose *Weiterlaufen lassen* or *Reset* there.
 
-<figure>
-<img src="{{ '/assets/28-debug-after-stop.png' | relative_url }}" alt="After stopping: status bar back to Board: verbunden, läuft, without the GDB marker">
-<figcaption>After Stop the board is still running. Ending a debug session never leaves the firmware halted.</figcaption>
-</figure>
-
 
 The second configuration, **Attach CaDS Zero (Board im Browser, no flash)**, connects without a
 build and without a reset. Use it to look at a running or crashed firmware where it is.
