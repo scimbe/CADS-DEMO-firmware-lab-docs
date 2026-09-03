@@ -19,10 +19,11 @@ Vertrauens-Dialog gibt es nicht mehr zu bestätigen.
 
 ### Eine CMake-Tools-Benachrichtigung sagt „It is recommended to reconfigure after upgrading to a new kits definition“
 
-Beim ersten Start eines frischen Containers gesehen, wenige Sekunden nachdem die Workbench geladen
-war. Schließe sie. Die Labor-Tasks rufen `cmake` selbst auf und brauchen die Konfiguration von
-CMake Tools nicht; *Configure Now* schadet auch nicht, es führt nur das Preset `itsboard` ein
-zweites Mal aus.
+Beim ersten Start eines frischen Containers aus dem Image `next-8a20ec9` gesehen, wenige
+Sekunden nachdem die Workbench geladen war. Schließe sie. Die Labor-Tasks rufen `cmake` selbst
+auf und brauchen die Konfiguration von CMake Tools nicht; *Configure Now* schadet auch nicht, es
+führt nur das Preset `itsboard` ein zweites Mal aus. Images, die nach dem 2026-09-03 gebaut
+wurden, schalten den Kit-Scan ab; dort erscheint die Benachrichtigung nicht mehr.
 
 ### Die Statusleiste sagt „No Configure Preset Selected“
 

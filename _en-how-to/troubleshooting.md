@@ -18,9 +18,11 @@ operator to pull the current image. There is no trust dialog to accept any more.
 
 ### A CMake Tools notification says "It is recommended to reconfigure after upgrading to a new kits definition"
 
-Seen on the first start of a fresh container, a few seconds after the workbench loaded. Close it.
-The lab tasks call `cmake` themselves and do not need CMake Tools' configuration; *Configure
-Now* does no harm either, it just runs the `itsboard` preset a second time.
+Seen on the first start of a fresh container from image `next-8a20ec9`, a few seconds after
+the workbench loaded. Close it. The lab tasks call `cmake` themselves and do not need CMake
+Tools' configuration; *Configure Now* does no harm either, it just runs the `itsboard` preset a
+second time. Images built after 2026-09-03 disable the kit scan, so the notification is gone
+there.
 
 ### The status bar says "No Configure Preset Selected"
 
