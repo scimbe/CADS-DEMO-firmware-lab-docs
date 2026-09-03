@@ -6,6 +6,7 @@ description: >-
   fact), and explanation (understand why) — the Diátaxis framework (https://diataxis.fr). Available
   in English and German — every page has both, use the language toggle in the header.
 baseurl: "/CADS-DEMO-firmware-lab-docs"
+repository: scimbe/CADS-DEMO-firmware-lab-docs
 markdown: kramdown
 kramdown:
   input: GFM

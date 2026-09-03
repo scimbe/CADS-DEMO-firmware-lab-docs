@@ -72,12 +72,12 @@
 {% if lang == "en" %}{% assign other_path = page.url | replace: "/en/", "/de/" %}{% endif %}
 
 <header class="top">
- <a class="brand" href="{{ (lang | prepend: '/' | append: '/') | relative_url }}">Firmware Lab — Docs</a>
+ <a class="brand" href="{{ lang | prepend: '/' | append: '/' | relative_url }}">Firmware Lab — Docs</a>
  <nav class="top-nav">
-  <a href="{{ (lang | prepend: '/' | append: '/tutorials/') | relative_url }}">{% if lang == "de" %}Tutorials{% else %}Tutorials{% endif %}</a>
-  <a href="{{ (lang | prepend: '/' | append: '/how-to/') | relative_url }}">How-to</a>
-  <a href="{{ (lang | prepend: '/' | append: '/reference/') | relative_url }}">Reference</a>
-  <a href="{{ (lang | prepend: '/' | append: '/explanation/') | relative_url }}">Explanation</a>
+  <a href="{{ lang | prepend: '/' | append: '/tutorials/' | relative_url }}">{% if lang == "de" %}Tutorials{% else %}Tutorials{% endif %}</a>
+  <a href="{{ lang | prepend: '/' | append: '/how-to/' | relative_url }}">How-to</a>
+  <a href="{{ lang | prepend: '/' | append: '/reference/' | relative_url }}">Reference</a>
+  <a href="{{ lang | prepend: '/' | append: '/explanation/' | relative_url }}">Explanation</a>
   <a href="https://github.com/scimbe/CADS-DEMO-firmware-lab">CADS-DEMO-firmware-lab →</a>
   <span class="lang-toggle">
    {% if lang == "de" %}
