@@ -48,6 +48,17 @@ Click the status bar item **Board: getrennt** (or run **F1 → CaDS Board: Verbi
 bridge asks the browser to show its device chooser, filtered to STMicroelectronics devices
 (vendor id `0x0483`). Two dialogs appear one after the other:
 
+<figure>
+<img src="{{ '/assets/17-statusbar-disconnected.png' | relative_url }}" alt="Status bar with the entry Board: getrennt">
+<figcaption>Before connecting. The board entry sits in the status bar next to the branch name.</figcaption>
+</figure>
+
+<figure>
+<img src="{{ '/assets/18-board-menu-disconnected.png' | relative_url }}" alt="Board menu titled CaDS Board - getrennt with two entries: Board verbinden (USB/Serial freigeben) and Log anzeigen">
+<figcaption>A disconnected board offers exactly two things: connect, and show the log.</figcaption>
+</figure>
+
+
 1. **USB device**: pick *STM32 STLink*. This is the SWD path for flashing and debugging.
 2. **Serial port**: pick the ST-Link's virtual COM port. This is the console at 115200 baud.
 
@@ -58,6 +69,12 @@ When the connection is up, the status bar reads `Board: verbunden · läuft` and
 the ST-Link version, the detected device (`STM32F42x_F43x`) and the flash size. Clicking the item
 opens a small menu: *Flash*, *Reset*, *Anhalten* / *Weiterlaufen lassen*, *Konsole öffnen*,
 *Log anzeigen*, *Trennen*.
+
+<figure>
+<img src="{{ '/assets/20-statusbar-tooltip-connected.png' | relative_url }}" alt="Tooltip on the status bar entry: ST-Link V2-1 V2J33M25, STM32F42x/F43x (2048 KB), Core: running">
+<figcaption>The tooltip is the quickest check that the lab found the right probe and the right chip.</figcaption>
+</figure>
+
 
 <figure>
 <img src="{{ '/assets/13-board-connected.png' | relative_url }}" alt="Board menu open over the editor, titled CaDS Board - verbunden, with Flash, Reset, Anhalten, Konsole öffnen, Log anzeigen and Trennen; the status bar reads Board: verbunden, läuft">
@@ -80,6 +97,12 @@ HTTP API on `127.0.0.1:3335`, which forwards the image to the ST-Link in your br
 notification *CaDS: Flash cads-zero.bin* shows the phases *erase*, *program* and *verify*;
 afterwards the status bar shows `Flash ok: <bytes> Bytes in <ms> ms` for a few seconds, and
 `st-flash reset` restarts the board.
+
+<figure>
+<img src="{{ '/assets/21-flash-ok.png' | relative_url }}" alt="Status bar showing Flash ok: 327088 Bytes in 15973 ms, with the tooltip naming the last flash">
+<figcaption>A finished flash. The tooltip keeps the result until the next one.</figcaption>
+</figure>
+
 
 <figure>
 <img src="{{ '/assets/14-flash-progress.png' | relative_url }}" alt="Notification CaDS: Flash cads-zero.bin: verify 84 percent, with a tooltip showing ST-Link V2-1 V2J33M25, STM32F42x/F43x, 2048 KB and Core: running">

@@ -48,6 +48,17 @@ Klicke auf den Statusleisten-Eintrag **Board: getrennt** (oder führe **F1 → C
 Verbinden** aus). Die Bridge bittet den Browser, seinen Geräte-Dialog zu zeigen, gefiltert auf
 Geräte von STMicroelectronics (Vendor-ID `0x0483`). Zwei Dialoge erscheinen nacheinander:
 
+<figure>
+<img src="{{ '/assets/17-statusbar-disconnected.png' | relative_url }}" alt="Statusleiste mit dem Eintrag Board: getrennt">
+<figcaption>Vor dem Verbinden. Der Board-Eintrag steht in der Statusleiste neben dem Branch-Namen.</figcaption>
+</figure>
+
+<figure>
+<img src="{{ '/assets/18-board-menu-disconnected.png' | relative_url }}" alt="Board-Menü mit dem Titel CaDS Board - getrennt und zwei Einträgen: Board verbinden (USB/Serial freigeben) und Log anzeigen">
+<figcaption>Ein getrenntes Board bietet genau zwei Dinge an: verbinden und Log anzeigen.</figcaption>
+</figure>
+
+
 1. **USB-Gerät**: wähle *STM32 STLink*. Das ist der SWD-Pfad für Flashen und Debuggen.
 2. **Serieller Port**: wähle den virtuellen COM-Port der ST-Link. Das ist die Konsole mit
    115200 Baud.
@@ -59,6 +70,12 @@ Steht die Verbindung, zeigt die Statusleiste `Board: verbunden · läuft`, und d
 die ST-Link-Version, das erkannte Gerät (`STM32F42x_F43x`) und die Flash-Größe. Ein Klick auf den
 Eintrag öffnet ein kleines Menü: *Flash*, *Reset*, *Anhalten* / *Weiterlaufen lassen*,
 *Konsole öffnen*, *Log anzeigen*, *Trennen*.
+
+<figure>
+<img src="{{ '/assets/20-statusbar-tooltip-connected.png' | relative_url }}" alt="Tooltip am Statusleisten-Eintrag: ST-Link V2-1 V2J33M25, STM32F42x/F43x (2048 KB), Core: running">
+<figcaption>Der Tooltip ist die schnellste Kontrolle, ob das Labor die richtige Probe und den richtigen Chip gefunden hat.</figcaption>
+</figure>
+
 
 <figure>
 <img src="{{ '/assets/13-board-connected.png' | relative_url }}" alt="Geöffnetes Board-Menü über dem Editor, Titel CaDS Board - verbunden, mit Flash, Reset, Anhalten, Konsole öffnen, Log anzeigen und Trennen; die Statusleiste zeigt Board: verbunden, läuft">
@@ -81,6 +98,12 @@ HTTP-API der Bridge auf `127.0.0.1:3335` spricht; die reicht das Image an die ST
 Browser weiter. Eine Benachrichtigung *CaDS: Flash cads-zero.bin* zeigt die Phasen *erase*,
 *program* und *verify*; danach zeigt die Statusleiste einige Sekunden lang
 `Flash ok: <bytes> Bytes in <ms> ms`, und `st-flash reset` startet das Board neu.
+
+<figure>
+<img src="{{ '/assets/21-flash-ok.png' | relative_url }}" alt="Statusleiste mit Flash ok: 327088 Bytes in 15973 ms, dazu der Tooltip mit dem letzten Flash">
+<figcaption>Ein fertiger Flash. Der Tooltip behält das Ergebnis bis zum nächsten Mal.</figcaption>
+</figure>
+
 
 <figure>
 <img src="{{ '/assets/14-flash-progress.png' | relative_url }}" alt="Benachrichtigung CaDS: Flash cads-zero.bin: verify 84 Prozent, dazu ein Tooltip mit ST-Link V2-1 V2J33M25, STM32F42x/F43x, 2048 KB und Core: running">

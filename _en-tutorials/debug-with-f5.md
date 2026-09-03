@@ -43,6 +43,12 @@ Open *Run and Debug* (the play icon with the bug in the activity bar). The confi
 **Debug CaDS Zero (Board im Browser)** is preselected.
 
 <figure>
+<img src="{{ '/assets/22-run-and-debug-configurations.png' | relative_url }}" alt="Configuration list with Debug CaDS Zero (Board im Browser) ticked and Attach CaDS Zero (Board im Browser, no flash) below it">
+<figcaption>Two configurations ship with the workspace: launch, which flashes first, and attach, which does not.</figcaption>
+</figure>
+
+
+<figure>
 <img src="{{ '/assets/11-run-and-debug.png' | relative_url }}" alt="Run and Debug view with the launch configuration Debug CaDS Zero (Board im Browser) selected">
 <figcaption>The launch configuration comes with the workspace; you do not edit launch.json.</figcaption>
 </figure>
@@ -72,6 +78,22 @@ The status bar shows `Board: verbunden · angehalten · GDB`.
 - **Variables** shows the locals of the selected frame and a **Registers** section with
   `r0`–`r12`, `sp`, `lr`, `pc` and `xPSR`.
 
+<figure>
+<img src="{{ '/assets/24-debug-variables.png' | relative_url }}" alt="Variables pane with Local, Global, Static and Registers sections">
+<figcaption>The Variables pane. Local is empty here because main() has no locals yet at this line.</figcaption>
+</figure>
+
+<figure>
+<img src="{{ '/assets/25-debug-registers.png' | relative_url }}" alt="Registers section expanded, showing r0 to r5 with live values">
+<figcaption>Registers read the real core. Switch between decimal and hex with the 0x button at the top of the pane.</figcaption>
+</figure>
+
+<figure>
+<img src="{{ '/assets/27-debug-after-step-over.png' | relative_url }}" alt="Call stack after Step Over: main at 0x0802310e, main.c line 14">
+<figcaption>After Step Over the program counter has moved to the next line, main.c:14.</figcaption>
+</figure>
+
+
 Every step and every memory read travels browser ↔ container once. Expect single steps to take
 noticeably longer than on a desktop with a local probe; see
 [Limits]({{ '/en/explanation/limits/' | relative_url }}).
@@ -83,6 +105,12 @@ The launch configuration loads `targets/itsboard/STM32F429.svd`. While the targe
 listing every peripheral with its base address. Expand `RCC → CR` to see `HSERDY`, or
 `GPIOD → ODR` to read what the last output write left on PD0–PD7. Outside a session the section
 says *No active debug session*.
+
+<figure>
+<img src="{{ '/assets/26-debug-peripherals-svd.png' | relative_url }}" alt="XPeripherals list from the SVD file: ADC1 at 0x40012000, ADC2, ADC3, C_ADC, CAN1 at 0x40006400">
+<figcaption>Every peripheral of the STM32F429 with its base address, straight from the SVD file.</figcaption>
+</figure>
+
 
 <figure>
 <img src="{{ '/assets/15-debug-session.png' | relative_url }}" alt="Live debug session: debug toolbar above main.c stopped at line 13, Variables with Local, Global, Static and Registers, Call Stack showing Paused on breakpoint at main, XPeripherals listing ADC1 and CAN1 with their base addresses, and GDB output in the debug console">
@@ -98,6 +126,12 @@ Click the red **Stop** button (Shift+F5). GDB detaches, the bridge resumes the t
 firmware keeps running on the board; the status bar drops the `GDB` marker and shows `läuft`.
 If you halted the core yourself from the board menu, it stays halted with a warning colour
 until you choose *Weiterlaufen lassen* or *Reset* there.
+
+<figure>
+<img src="{{ '/assets/28-debug-after-stop.png' | relative_url }}" alt="After stopping: status bar back to Board: verbunden, läuft, without the GDB marker">
+<figcaption>After Stop the board is still running. Ending a debug session never leaves the firmware halted.</figcaption>
+</figure>
+
 
 The second configuration, **Attach CaDS Zero (Board im Browser, no flash)**, connects without a
 build and without a reset. Use it to look at a running or crashed firmware where it is.

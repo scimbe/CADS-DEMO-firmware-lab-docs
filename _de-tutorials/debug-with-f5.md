@@ -45,6 +45,12 @@ Punkt erscheint. Diese Stelle liegt genau zwischen „Hardware initialisiert“ 
 **Debug CaDS Zero (Board im Browser)** ist vorausgewählt.
 
 <figure>
+<img src="{{ '/assets/22-run-and-debug-configurations.png' | relative_url }}" alt="Konfigurationsliste mit angehaktem Debug CaDS Zero (Board im Browser) und darunter Attach CaDS Zero (Board im Browser, no flash)">
+<figcaption>Zwei Konfigurationen kommen mit dem Workspace: launch flasht vorher, attach nicht.</figcaption>
+</figure>
+
+
+<figure>
 <img src="{{ '/assets/11-run-and-debug.png' | relative_url }}" alt="Ansicht Run and Debug mit der ausgewählten Launch-Konfiguration Debug CaDS Zero (Board im Browser)">
 <figcaption>Die Launch-Konfiguration kommt mit dem Workspace; du bearbeitest launch.json nicht.</figcaption>
 </figure>
@@ -75,6 +81,22 @@ Statusleiste zeigt `Board: verbunden · angehalten · GDB`.
 - **Variables** zeigt die lokalen Variablen des gewählten Frames und einen Abschnitt
   **Registers** mit `r0`–`r12`, `sp`, `lr`, `pc` und `xPSR`.
 
+<figure>
+<img src="{{ '/assets/24-debug-variables.png' | relative_url }}" alt="Variables-Bereich mit den Abschnitten Local, Global, Static und Registers">
+<figcaption>Der Variables-Bereich. Local ist hier leer, weil main() an dieser Zeile noch keine lokalen Variablen hat.</figcaption>
+</figure>
+
+<figure>
+<img src="{{ '/assets/25-debug-registers.png' | relative_url }}" alt="Aufgeklappter Registers-Abschnitt mit r0 bis r5 und echten Werten">
+<figcaption>Die Register kommen vom echten Kern. Zwischen dezimal und hexadezimal schaltet die 0x-Schaltfläche oben im Bereich um.</figcaption>
+</figure>
+
+<figure>
+<img src="{{ '/assets/27-debug-after-step-over.png' | relative_url }}" alt="Call-Stack nach Step Over: main bei 0x0802310e, main.c Zeile 14">
+<figcaption>Nach Step Over steht der Programmzähler auf der nächsten Zeile, main.c:14.</figcaption>
+</figure>
+
+
 Jeder Schritt und jedes Speicherlesen reist einmal Browser ↔ Container. Rechne damit, dass
 Einzelschritte spürbar länger dauern als am Desktop mit lokaler Probe; siehe
 [Grenzen]({{ '/de/explanation/limits/' | relative_url }}).
@@ -87,6 +109,12 @@ mcu-debug.peripheral-viewer), der jedes Peripheriegerät mit seiner Basisadresse
 `RCC → CR` auf, um `HSERDY` zu sehen, oder `GPIOD → ODR`, um zu lesen, was der letzte
 Ausgangsschreibvorgang auf PD0–PD7 hinterlassen hat. Außerhalb einer Sitzung steht dort
 *No active debug session*.
+
+<figure>
+<img src="{{ '/assets/26-debug-peripherals-svd.png' | relative_url }}" alt="XPeripherals-Liste aus der SVD-Datei: ADC1 bei 0x40012000, ADC2, ADC3, C_ADC, CAN1 bei 0x40006400">
+<figcaption>Jedes Peripheriegerät des STM32F429 mit seiner Basisadresse, direkt aus der SVD-Datei.</figcaption>
+</figure>
+
 
 <figure>
 <img src="{{ '/assets/15-debug-session.png' | relative_url }}" alt="Laufende Debugsitzung: Debug-Toolbar über main.c, angehalten in Zeile 13, Variables mit Local, Global, Static und Registers, Call Stack mit Paused on breakpoint bei main, XPeripherals mit ADC1 und CAN1 samt Basisadressen, dazu GDB-Ausgabe in der Debug-Konsole">
@@ -102,6 +130,12 @@ Klicke den roten **Stop**-Button (Shift+F5). GDB hängt sich ab, die Bridge läs
 weiterlaufen, und die Firmware läuft auf dem Board weiter; die Statusleiste verliert die
 Markierung `GDB` und zeigt `läuft`. Nur wenn du den Kern selbst über das Board-Menü angehalten
 hast, bleibt er mit Warnfarbe angehalten, bis du dort *Weiterlaufen lassen* oder *Reset* wählst.
+
+<figure>
+<img src="{{ '/assets/28-debug-after-stop.png' | relative_url }}" alt="Nach dem Beenden: Statusleiste wieder Board: verbunden, läuft, ohne GDB-Markierung">
+<figcaption>Nach dem Beenden läuft das Board weiter. Eine beendete Debugsitzung lässt die Firmware nie angehalten zurück.</figcaption>
+</figure>
+
 
 Die zweite Konfiguration, **Attach CaDS Zero (Board im Browser, no flash)**, verbindet sich ohne
 Build und ohne Reset. Nutze sie, um eine laufende oder abgestürzte Firmware dort anzusehen, wo

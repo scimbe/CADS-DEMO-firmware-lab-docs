@@ -59,6 +59,44 @@ Check in this order:
 5. **Linux.** Without the udev rule the device is listed but cannot be opened; see
    [Connect the board]({{ '/en/how-to/connect-the-board/' | relative_url }}#linux).
 
+### "Das Board wird bereits in einem anderen Tab dieses Labors benutzt."
+
+Exactly what it says. A board can be open in one browser tab at a time, and the lab now finds
+that out before it touches USB, using a lock shared across every tab of your browser profile.
+
+Close the other tab, or in that tab open the board menu and choose **Board freigeben**. Then
+connect again here. If you cannot find the other tab, close every lab tab and reopen one.
+
+### "Ein anderes Programm auf deinem Rechner hält das Board."
+
+A program outside the browser has the ST-Link open: `st-flash`, `st-util`, STM32CubeProgrammer,
+an IDE, or a second browser with the lab open. The browser cannot share a USB device with them,
+so quit that program and connect again.
+
+This message and the previous one look identical to the browser: both produce
+`NetworkError: Unable to claim interface`. The lab tells them apart by whether the lock inside
+your own browser profile is taken, which is why the wording differs.
+
+### "Board freigeben" – handing the board to someone else
+
+The board menu has **Board freigeben**. It closes the USB device and the serial port and drops
+the lock, so another tab, another program, or the local `st-flash` can use the adapter. It is
+the polite counterpart to *Trennen* and the thing to do before you use the host tools.
+
+The lab also releases the board on its own when the extension shuts down. Set
+`cads.board.idleReleaseSeconds` if you want it released after the window has been in the
+background for a while; it is off by default.
+
+### The lab says the board is not connected, but it is plugged in
+
+<figure>
+<img src="{{ '/assets/19-shim-board-not-connected.png' | relative_url }}" alt="Integrated terminal: st-info --probe prints Found 0 stlink programmers, st-flash write ends with error: flash failed: board not connected; the status bar reads Board: getrennt">
+<figcaption>The shims when the board has not been connected in the browser. They now print the reason and the next step in German and English underneath.</figcaption>
+</figure>
+
+Connect the board from the status bar first. The shims talk to the bridge, and the bridge talks
+to the browser; none of them can reach USB on their own.
+
 ### "Board-Bridge nicht aktiv – Board im Browser verbinden (CaDS Board Panel)"
 
 Printed by `st-flash` and `st-info` when the bridge's HTTP API on `127.0.0.1:3335` does not
@@ -74,9 +112,22 @@ write` erases only the sectors it writes. See
 ### `st-info --probe` shows `chipid 0x000`
 
 The ST-Link answers but the core does not. This is the "wedged ST-Link" state, caused by an SWD
-client that was killed mid-transfer (a page reload during a flash, a debug session that ended
-hard). Unplug and replug the USB cable, unmount `NOD_F429ZI` on macOS, reconnect. See
+client that stopped mid-transfer - a page reload during a flash, a debug session that ended hard,
+or simply a tab that was closed, which runs no teardown at all.
+
+**Connecting in the lab now tries to repair this by itself.** It never assumes the previous
+session ended cleanly: it re-enters SWD, and if the target still does not answer it repeats that
+with the reset line held low, which is what `st-info --probe --connect-under-reset` does on the
+command line. Two attempts, then it stops rather than hammering the adapter.
+
+If you still see *Der Debug-Adapter reagiert nicht mehr*, the adapter is desynchronised at the USB
+level and only a replug fixes it: unplug the cable, plug it back in, unmount `NOD_F429ZI` on
+macOS, and connect again. See
 [Reconnect after a replug]({{ '/en/how-to/reconnect-after-replug/' | relative_url }}).
+
+There is a reliable way to tell the two apart from a terminal on your own computer: if
+`st-info --probe` still prints a real version such as `V2J33S25`, the software recovery has a
+chance; if the version line degrades to a bare `V2`, only a replug will do.
 
 ### `st-info` on my own computer says "Found 0 stlink programmers"
 
@@ -90,10 +141,34 @@ A local `st-flash reset` fired at the moment the browser released the device wed
 during verification (`LIBUSB_ERROR_TIMEOUT`, then `chipid 0x000`). Use the lab's board menu for
 reset and flash; if you need the local tools, disconnect in the lab first and wait a second.
 
-### The board shows wild LEDs after a replug (macOS)
+### The `NOD_F429ZI` drive is the single most damaging thing on this board
 
-macOS wrote metadata to the `NOD_F429ZI` mass-storage drive and the ST-Link took it as
-firmware. Reflash with **CaDS: Build + Flash**; then unmount the drive after every replug.
+The ST-Link exposes an MBED drive called `NOD_F429ZI`. Your operating system mounts it whenever
+the adapter enumerates and writes metadata to it without being asked - Spotlight indexes,
+`.fseventsd`, `._` files. **The ST-Link interprets writes to that drive as firmware for
+`0x08000000`.** That has corrupted a real image once here, a single cleared bit in the vector
+table's initial-SP word, which left the board hanging in the reset handler with wild LEDs. It is
+also one of the ways the adapter stops responding in the middle of a session.
+
+If it already happened, reflash with **CaDS: Build + Flash** - the image is repaired by a plain
+rewrite. But do not stop there, because unmounting after the fact is a race with whatever wrote
+first. Fix it at the source, best option first:
+
+1. **An adapter firmware without mass storage.** ST's own upgrade tool (STSW-LINK007) offers a
+   variant that keeps debug and the virtual COM port but drops the MBED drive. That removes the
+   hazard completely and is the right choice for lab-owned boards. We have not run this upgrade
+   on the lab board, so treat the exact steps as something to verify against ST's documentation
+   for your adapter before you flash it - a failed adapter firmware update is worse than the
+   problem it solves.
+2. **Stop the automatic mount.** On macOS run `scripts/setup-host-macos.sh` from the bridge
+   repository once. It adds `LABEL=NOD_F429ZI none msdos rw,noauto` to `/etc/fstab` and excludes
+   the volume from Spotlight, shows you both changes first, and `--undo` reverses them. It needs
+   administrator rights once. On Linux install `scripts/60-cads-stlink.rules`, which does the
+   same and also grants the USB access the browser needs.
+3. **Unmount it every time.** Without administrator rights, run
+   `diskutil unmountDisk /dev/diskN` after every replug *and* after every reset - a reset
+   re-enumerates the adapter, so the drive comes straight back. This is the weakest option
+   because it only closes the window after something may already have written.
 
 ### Flashing fails with a verify error
 

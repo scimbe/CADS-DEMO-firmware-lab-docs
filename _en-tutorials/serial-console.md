@@ -28,6 +28,12 @@ Click the status bar item **Board: verbunden …** and choose **Konsole öffnen*
 If the serial port was not granted yet, the terminal prints a yellow hint instead and you connect
 the board first. The status bar then shows `· Konsole` while the port is open.
 
+<figure>
+<img src="{{ '/assets/23-console-without-serial-grant.png' | relative_url }}" alt="CaDS Board Console terminal with a cyan banner and a yellow hint that the console is not open and the serial port needs to be granted">
+<figcaption>The console before the serial port is granted. The red dot in the gutter is a breakpoint, set in the next tutorial.</figcaption>
+</figure>
+
+
 ## 2. Read the boot self-test
 
 Press **Reset** in the board menu. The firmware prints its self-test in TAP format:

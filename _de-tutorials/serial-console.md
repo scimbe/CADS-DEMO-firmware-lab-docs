@@ -31,6 +31,12 @@ Wurde der serielle Port noch nicht freigegeben, druckt das Terminal stattdessen 
 Hinweis, und du verbindest zuerst das Board. Die Statusleiste zeigt dann `· Konsole`, solange der
 Port offen ist.
 
+<figure>
+<img src="{{ '/assets/23-console-without-serial-grant.png' | relative_url }}" alt="CaDS-Board-Console-Terminal mit cyanfarbenem Banner und gelbem Hinweis, dass die Konsole nicht offen ist und der serielle Port freigegeben werden muss">
+<figcaption>Die Konsole, bevor der serielle Port freigegeben ist. Der rote Punkt in der Randspalte ist ein Breakpoint aus dem nächsten Tutorial.</figcaption>
+</figure>
+
+
 ## 2. Den Boot-Selbsttest lesen
 
 Drücke **Reset** im Board-Menü. Die Firmware druckt ihren Selbsttest im TAP-Format:
