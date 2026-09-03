@@ -4,8 +4,8 @@ title: Firmware Lab Docs
 lang: en
 ---
 
-<h1>Firmware Lab — Docs</h1>
-<p class="tagline">Learn real STM32 firmware with an AI tutor that walks you through it one register at a time — nothing to install, just a browser.</p>
+<h1>CaDS Firmware Lab — Docs</h1>
+<p class="tagline">Real STM32 firmware in a browser IDE: the toolchain and the course tutor run in a container, the board stays on your desk, the browser drives the ST-Link. Nothing to install.</p>
 
 <p>Choose a language / Sprache wählen:</p>
 
