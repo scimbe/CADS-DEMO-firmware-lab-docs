@@ -12,7 +12,8 @@ Through it you read the boot self-test and use the firmware's own diagnostic con
 Unlike the USB grant, the serial-port grant cannot be pre-seeded: Chrome forgets WebSerial
 permissions that were not given through its own dialog. So the console needs <strong>one</strong>
 manual chooser click per browser profile; after that the port is reopened across reloads without
-a dialog. A screenshot of the console terminal with hardware follows.
+a dialog. That click is the one step in this lab that cannot be automated, which is why the
+screenshot below was captured a different way - the caption says how.
 </div>
 
 ## 1. Open the console
@@ -32,7 +33,7 @@ the board first. The status bar then shows `· Konsole` while the port is open.
 Press **Reset** in the board menu. The firmware prints its self-test in TAP format:
 
 ```
-1..9
+1..10
 ok 1 - SysTick advances at 1 kHz
 ok 2 - DWT microsecond clock agrees
 ...
@@ -43,7 +44,12 @@ ok 7 - dirty rectangle limits the transfer
 # RESULT: PASS
 ```
 
-`1..9` is the plan, `ok`/`not ok` are assertions, `#` lines are diagnostics. The tutor's check
+<figure>
+<img src="{{ '/assets/16-board-console.png' | relative_url }}" alt="Lab terminal showing the board's boot self-test: CaDS Zero v0.1.0 banner, plan 1..10, ten ok lines with diagnostic hash lines, 10/10 passed, RESULT: PASS and EXPLORER ready">
+<figcaption>A real boot self-test from the ITSboard, 2026-09-03. Because granting WebSerial needs a manual click that no test harness can perform, this capture was streamed from the host's virtual COM port into a lab terminal rather than through the <strong>CaDS Board Console</strong>; the text is exactly what that console shows once the port is granted.</figcaption>
+</figure>
+
+`1..10` is the plan, `ok`/`not ok` are assertions, `#` lines are diagnostics. The tutor's check
 `serialExpect` waits for exactly the `RESULT: PASS` line. The number `flush_kpixel_per_s: 342`
 is a measurement, not a calculation: a full-screen redraw of 153 600 pixels takes about 448 ms,
 because the display's shift-register chain costs 16 SPI clocks per pixel.

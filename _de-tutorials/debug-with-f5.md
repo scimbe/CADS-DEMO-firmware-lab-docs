@@ -12,8 +12,8 @@ GDB-Server dahinter ist die Board-Bridge im Container, die die ST-Link in deinem
 Der Debug-Pfad wurde am 2026-09-03 mit echtem Chrome und dem ITSboard verifiziert: Halt an
 <code>main</code>, Register, Step Over nach <code>cads_bringup_run</code> mit zwei Frames im
 Call-Stack und lokalen Variablen, ein beim Boot getroffener Breakpoint, das Lesen des
-CPUID-Registers, Continue und Stop. Ein Schritt dauert Ende-zu-Ende etwa 100 ms. Screenshots
-einer laufenden Sitzung im Labor-Workspace (Debug-Toolbar, XPeripherals mit Werten) folgen.
+CPUID-Registers, Continue und Stop. Ein Schritt dauert Ende-zu-Ende etwa 100 ms; der Screenshot
+unten stammt aus dieser Sitzung.
 </div>
 
 ## Was du brauchst
@@ -87,6 +87,11 @@ mcu-debug.peripheral-viewer), der jedes Peripheriegerät mit seiner Basisadresse
 `RCC → CR` auf, um `HSERDY` zu sehen, oder `GPIOD → ODR`, um zu lesen, was der letzte
 Ausgangsschreibvorgang auf PD0–PD7 hinterlassen hat. Außerhalb einer Sitzung steht dort
 *No active debug session*.
+
+<figure>
+<img src="{{ '/assets/15-debug-session.png' | relative_url }}" alt="Laufende Debugsitzung: Debug-Toolbar über main.c, angehalten in Zeile 13, Variables mit Local, Global, Static und Registers, Call Stack mit Paused on breakpoint bei main, XPeripherals mit ADC1 und CAN1 samt Basisadressen, dazu GDB-Ausgabe in der Debug-Konsole">
+<figcaption>Eine Sitzung, angehalten an <code>main</code>. Call-Stack, Variablen und die SVD-Peripherie lesen den echten Chip; die Statusleiste zeigt <code>Board: verbunden · angehalten · GDB</code>.</figcaption>
+</figure>
 
 Aus derselben Extension-Familie sind außerdem verfügbar: *Memory* (mcu-debug.memory-view) und
 die RTOS-Task-Liste (mcu-debug.rtos-views), sobald der FreeRTOS-Scheduler läuft.

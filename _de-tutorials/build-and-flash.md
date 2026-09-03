@@ -12,8 +12,7 @@ das Gerät auszuwählen.
 <div class="callout">
 Der Flash-Pfad wurde am 2026-09-03 Ende-zu-Ende mit echtem Chrome, der ST-Link V2-1 und dem
 ITSboard verifiziert: ein Image von 327 088 Bytes wird in etwa 13 s geschrieben und verifiziert,
-und das Board bootet in seinen Selbsttest. Screenshots des Board-Menüs und des
-Flash-Fortschritts mit Hardware folgen; die UI-Texte unten stammen aus der Bridge.
+und das Board bootet in seinen Selbsttest. Die Screenshots unten stammen aus genau diesem Lauf.
 </div>
 
 ## Was du brauchst
@@ -61,6 +60,11 @@ die ST-Link-Version, das erkannte Gerät (`STM32F42x_F43x`) und die Flash-Größ
 Eintrag öffnet ein kleines Menü: *Flash*, *Reset*, *Anhalten* / *Weiterlaufen lassen*,
 *Konsole öffnen*, *Log anzeigen*, *Trennen*.
 
+<figure>
+<img src="{{ '/assets/13-board-connected.png' | relative_url }}" alt="Geöffnetes Board-Menü über dem Editor, Titel CaDS Board - verbunden, mit Flash, Reset, Anhalten, Konsole öffnen, Log anzeigen und Trennen; die Statusleiste zeigt Board: verbunden, läuft">
+<figcaption>Das Board-Menü bei verbundenem Board. Der Statusleisten-Eintrag ist die einzige Stelle, die du zum Flashen, Zurücksetzen und für die Konsole brauchst.</figcaption>
+</figure>
+
 Erscheint der Geräte-Dialog gar nicht, lies
 [Troubleshooting → Der Geräte-Dialog erscheint nicht]({{ '/de/how-to/troubleshooting/' | relative_url }}#der-geräte-dialog-erscheint-nicht).
 
@@ -77,6 +81,11 @@ HTTP-API der Bridge auf `127.0.0.1:3335` spricht; die reicht das Image an die ST
 Browser weiter. Eine Benachrichtigung *CaDS: Flash cads-zero.bin* zeigt die Phasen *erase*,
 *program* und *verify*; danach zeigt die Statusleiste einige Sekunden lang
 `Flash ok: <bytes> Bytes in <ms> ms`, und `st-flash reset` startet das Board neu.
+
+<figure>
+<img src="{{ '/assets/14-flash-progress.png' | relative_url }}" alt="Benachrichtigung CaDS: Flash cads-zero.bin: verify 84 Prozent, dazu ein Tooltip mit ST-Link V2-1 V2J33M25, STM32F42x/F43x, 2048 KB und Core: running">
+<figcaption>327 088 Bytes zu flashen dauert inklusive Verify rund 15 s. Der Tooltip nennt die Probe und den Chip, den die Bridge tatsächlich gefunden hat.</figcaption>
+</figure>
 
 Vor dem Schreiben **hält die Probe den Kern an**, statt ihn zurückzusetzen. Das ist auf diesem
 Board wichtig: die Firmware aktiviert den unabhängigen Watchdog, und ein Reset mitten in der

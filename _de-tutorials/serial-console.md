@@ -13,8 +13,9 @@ Diagnosekonsole.
 Anders als die USB-Freigabe lässt sich die Freigabe des seriellen Ports nicht vorab hinterlegen:
 Chrome vergisst WebSerial-Berechtigungen, die nicht über seinen eigenen Dialog erteilt wurden.
 Die Konsole braucht deshalb <strong>einen</strong> manuellen Klick im Geräte-Dialog je
-Browser-Profil; danach wird der Port über Reloads hinweg ohne Dialog wieder geöffnet. Ein
-Screenshot des Konsolen-Terminals mit Hardware folgt.
+Browser-Profil; danach wird der Port über Reloads hinweg ohne Dialog wieder geöffnet. Genau dieser
+Klick ist der einzige Schritt im Labor, der sich nicht automatisieren lässt - deshalb ist der
+Screenshot unten auf einem anderen Weg entstanden, die Bildunterschrift sagt wie.
 </div>
 
 ## 1. Die Konsole öffnen
@@ -35,7 +36,7 @@ Port offen ist.
 Drücke **Reset** im Board-Menü. Die Firmware druckt ihren Selbsttest im TAP-Format:
 
 ```
-1..9
+1..10
 ok 1 - SysTick advances at 1 kHz
 ok 2 - DWT microsecond clock agrees
 ...
@@ -46,7 +47,12 @@ ok 7 - dirty rectangle limits the transfer
 # RESULT: PASS
 ```
 
-`1..9` ist der Plan, `ok`/`not ok` sind Zusicherungen, `#`-Zeilen sind Diagnosen. Der
+<figure>
+<img src="{{ '/assets/16-board-console.png' | relative_url }}" alt="Labor-Terminal mit dem Boot-Selbsttest des Boards: Banner CaDS Zero v0.1.0, Plan 1..10, zehn ok-Zeilen mit Diagnose-Rautenzeilen, 10/10 passed, RESULT: PASS und EXPLORER ready">
+<figcaption>Ein echter Boot-Selbsttest des ITSboards vom 2026-09-03. Weil die WebSerial-Freigabe einen manuellen Klick verlangt, den keine Testautomatik ausführen kann, wurde diese Aufnahme vom virtuellen COM-Port des Hosts in ein Labor-Terminal gestreamt statt durch die <strong>CaDS Board Console</strong>; der Text ist exakt das, was diese Konsole nach der Freigabe zeigt.</figcaption>
+</figure>
+
+`1..10` ist der Plan, `ok`/`not ok` sind Zusicherungen, `#`-Zeilen sind Diagnosen. Der
 Tutor-Check `serialExpect` wartet auf genau die Zeile `RESULT: PASS`. Die Zahl
 `flush_kpixel_per_s: 342` ist gemessen, nicht gerechnet: ein Vollbild-Neuaufbau mit 153 600 Pixeln
 dauert etwa 448 ms, weil die Schieberegisterkette des Displays 16 SPI-Takte pro Pixel kostet.

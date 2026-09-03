@@ -12,8 +12,7 @@ device once.
 <div class="callout">
 The flash path was verified end to end on 2026-09-03 with real Chrome, the ST-Link V2-1 and the
 ITSboard: a 327 088-byte image is written and verified in about 13 s and the board boots into
-its self-test. Screenshots of the board menu and the flash progress with hardware follow; the
-UI strings below are taken from the bridge.
+its self-test, and the screenshots below come from that run.
 </div>
 
 ## What you need
@@ -60,6 +59,11 @@ the ST-Link version, the detected device (`STM32F42x_F43x`) and the flash size. 
 opens a small menu: *Flash*, *Reset*, *Anhalten* / *Weiterlaufen lassen*, *Konsole öffnen*,
 *Log anzeigen*, *Trennen*.
 
+<figure>
+<img src="{{ '/assets/13-board-connected.png' | relative_url }}" alt="Board menu open over the editor, titled CaDS Board - verbunden, with Flash, Reset, Anhalten, Konsole öffnen, Log anzeigen and Trennen; the status bar reads Board: verbunden, läuft">
+<figcaption>The board menu with a connected board. The status bar entry is the only place you need for flashing, resetting and the console.</figcaption>
+</figure>
+
 If the chooser does not appear at all, read
 [Troubleshooting → The chooser does not appear]({{ '/en/how-to/troubleshooting/' | relative_url }}#the-device-chooser-does-not-appear).
 
@@ -76,6 +80,11 @@ HTTP API on `127.0.0.1:3335`, which forwards the image to the ST-Link in your br
 notification *CaDS: Flash cads-zero.bin* shows the phases *erase*, *program* and *verify*;
 afterwards the status bar shows `Flash ok: <bytes> Bytes in <ms> ms` for a few seconds, and
 `st-flash reset` restarts the board.
+
+<figure>
+<img src="{{ '/assets/14-flash-progress.png' | relative_url }}" alt="Notification CaDS: Flash cads-zero.bin: verify 84 percent, with a tooltip showing ST-Link V2-1 V2J33M25, STM32F42x/F43x, 2048 KB and Core: running">
+<figcaption>Flashing 327 088 bytes takes about 15 s including the verify pass. The tooltip names the probe and the chip the bridge actually found.</figcaption>
+</figure>
 
 Before writing, the probe **halts** the core instead of resetting it. That matters on this board:
 the firmware arms the independent watchdog, and a reset in the middle of a flash sequence would

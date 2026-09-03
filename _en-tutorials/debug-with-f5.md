@@ -12,8 +12,7 @@ the board bridge inside the container, which drives the ST-Link in your browser.
 The debug path was verified on 2026-09-03 with real Chrome and the ITSboard: stop at
 <code>main</code>, registers, Step Over into <code>cads_bringup_run</code> with a two-frame call
 stack and locals, a breakpoint hit during boot, a read of the CPUID register, Continue and Stop.
-One step takes about 100 ms end to end. Screenshots of a live session in the lab workspace
-(debug toolbar, XPeripherals with values) follow.
+One step takes about 100 ms end to end, and the screenshot below is from that session.
 </div>
 
 ## What you need
@@ -84,6 +83,11 @@ The launch configuration loads `targets/itsboard/STM32F429.svd`. While the targe
 listing every peripheral with its base address. Expand `RCC → CR` to see `HSERDY`, or
 `GPIOD → ODR` to read what the last output write left on PD0–PD7. Outside a session the section
 says *No active debug session*.
+
+<figure>
+<img src="{{ '/assets/15-debug-session.png' | relative_url }}" alt="Live debug session: debug toolbar above main.c stopped at line 13, Variables with Local, Global, Static and Registers, Call Stack showing Paused on breakpoint at main, XPeripherals listing ADC1 and CAN1 with their base addresses, and GDB output in the debug console">
+<figcaption>A session stopped at <code>main</code>. Call stack, variables and the SVD peripherals all read the real chip; the status bar shows <code>Board: verbunden · angehalten · GDB</code>.</figcaption>
+</figure>
 
 Also available from the same extension family: *Memory* (mcu-debug.memory-view) and the RTOS
 task list (mcu-debug.rtos-views) once the FreeRTOS scheduler is running.
