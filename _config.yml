@@ -111,6 +111,7 @@ defaults:
 
 exclude:
   - scripts
+  - vendor
   - README.md
   - Gemfile
   - Gemfile.lock
