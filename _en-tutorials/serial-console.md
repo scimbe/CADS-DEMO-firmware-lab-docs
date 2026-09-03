@@ -8,10 +8,11 @@ The ST-Link exposes the firmware's USART3 as a virtual COM port. In the lab that
 your browser (WebSerial) and appears in the container as a terminal named **CaDS Board Console**.
 Through it you read the boot self-test and use the firmware's own diagnostic console.
 
-<div class="callout warn">
-The console path (WebSerial in the browser, serial TCP and the terminal in the container) is
-part of the board bridge, which is being verified against real hardware at the time of writing.
-A screenshot of the console terminal follows once recorded.
+<div class="callout">
+Unlike the USB grant, the serial-port grant cannot be pre-seeded: Chrome forgets WebSerial
+permissions that were not given through its own dialog. So the console needs <strong>one</strong>
+manual chooser click per browser profile; after that the port is reopened across reloads without
+a dialog. A screenshot of the console terminal with hardware follows.
 </div>
 
 ## 1. Open the console

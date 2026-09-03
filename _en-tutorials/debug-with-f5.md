@@ -8,11 +8,12 @@ Debugging in the lab works like in a desktop IDE: F5, breakpoints in the gutter,
 the call stack, registers and the peripheral view from the SVD file. The GDB server behind it is
 the board bridge inside the container, which drives the ST-Link in your browser.
 
-<div class="callout warn">
-The debug path runs through the bridge's GDB server, which is being verified against real
-hardware at the time of writing. The flow below follows the launch configuration in the image
-and the bridge's debug provider. Screenshots of a live session (debug toolbar, XPeripherals with
-values) follow once recorded.
+<div class="callout">
+The debug path was verified on 2026-09-03 with real Chrome and the ITSboard: stop at
+<code>main</code>, registers, Step Over into <code>cads_bringup_run</code> with a two-frame call
+stack and locals, a breakpoint hit during boot, a read of the CPUID register, Continue and Stop.
+One step takes about 100 ms end to end. Screenshots of a live session in the lab workspace
+(debug toolbar, XPeripherals with values) follow.
 </div>
 
 ## What you need
@@ -89,10 +90,10 @@ task list (mcu-debug.rtos-views) once the FreeRTOS scheduler is running.
 
 ## 5. Stop
 
-Click the red **Stop** button. The bridge releases the probe; the status bar drops the `GDB`
-marker and shows `angehalten` with a warning colour as long as the core is halted with no
-debugger attached. Click the status bar item and choose *Weiterlaufen lassen* (or *Reset*) to
-let the firmware run again.
+Click the red **Stop** button (Shift+F5). GDB detaches, the bridge resumes the target, and the
+firmware keeps running on the board; the status bar drops the `GDB` marker and shows `läuft`.
+If you halted the core yourself from the board menu, it stays halted with a warning colour
+until you choose *Weiterlaufen lassen* or *Reset* there.
 
 The second configuration, **Attach CaDS Zero (Board im Browser, no flash)**, connects without a
 build and without a reset. Use it to look at a running or crashed firmware where it is.

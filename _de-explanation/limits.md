@@ -8,12 +8,20 @@ description: Was die browser-gebrückte Architektur weniger gut kann als ein Des
 
 Jedes GDB-Paket, das das Target braucht (Speicher lesen, Register lesen, Schritt), wird zu
 mindestens einem Kommando-Round-Trip vom Container zum Web Worker in deinem Browser und
-zurück, über den WebSocket und in Produktion über den TLS-Tunnel. Ein lokaler Container misst
-16–18 ms für einen trivialen Ping; über das Internet ist es deine Round-Trip-Zeit plus die
-USB-Transaktion. Die Bridge bündelt Operationen und cacht Speicher, solange der Core
-angehalten ist, sodass das Öffnen eines Call-Stacks ein Schub ist statt Dutzende Fahrten, aber
-das Einzelschritten durch eine Schleife ist spürbar langsamer als mit einer Probe am Desktop.
-Genaue Zahlen über den Tunnel werden mit echter Hardware aufgezeichnet und hier ergänzt.
+zurück, über den WebSocket und in Produktion über den TLS-Tunnel. Gemessen am 2026-09-03 mit
+einem lokalen Container und echter Hardware:
+
+| Pfad | Gemessen |
+|---|---|
+| Kommando-Round-Trip Container ↔ Web Worker, ohne USB | 16–23 ms |
+| eine Probe-Operation Ende-zu-Ende (HTTP-Shim → Bridge → Worker → WebUSB → ST-Link → zurück) | 94–115 ms |
+| ein Debugger-Schritt | etwa 100 ms |
+| Flash von 327 088 Bytes mit Verify | 13,2–13,3 s (etwa 24 KB/s über WebUSB) |
+
+Über das Internet kommt deine Round-Trip-Zeit zum Tunnel hinzu. Die Bridge bündelt Operationen
+und cacht Speicher, solange der Core angehalten ist, sodass das Öffnen eines Call-Stacks ein
+Schub ist statt Dutzende Fahrten, aber das Einzelschritten durch eine Schleife ist spürbar
+langsamer als mit einer Probe am Desktop.
 
 ## Ein Board, ein Browser-Tab
 
@@ -48,11 +56,24 @@ und zeigt jeden Hinweis und jede Quelle, aber Fragen fallen auf manuelle Bestät
 WebUSB und WebSerial gibt es nur in Chromium-basierten Browsern. Firefox und Safari können
 Editor, Build-Tasks und Tutor nutzen, aber nicht das Board.
 
-## Was noch in Verifikation ist
+## Serielle Konsole braucht einen Klick im Dialog
 
-Zum Zeitpunkt des Schreibens hat die Board-Bridge (`cads-probe`, `cads-board-bridge`) ihren
-Machbarkeitstest im lokalen Container bestanden (Web-Extension im Worker, USB und Seriell
-erreichbar, Round-Trip Container ↔ Worker) und ihre Treiber-Portierung ist unit-getestet,
-während die Ende-zu-Ende-Pfade für Flash, Debug und Konsole gegen das echte ITSboard verifiziert
-werden. Seiten, die diese Pfade beschreiben, tragen einen Hinweis und bekommen ihre Screenshots,
-sobald der Hardware-Durchlauf aufgezeichnet ist.
+WebUSB-Freigaben stellt der Browser ohne Dialog wieder her; WebSerial-Freigaben lassen sich
+nicht vorab hinterlegen, und die Chrome-Policy, die das erlauben würde, braucht ein verwaltetes
+Profil (MDM). Flash und Debug laufen deshalb nach der ersten Freigabe ohne Dialog, die serielle
+Konsole fragt einmal je Browser-Profil.
+
+## Keine lokalen ST-Link-Tools, solange das Labor das Board hält
+
+Solange der Browser die ST-Link geöffnet hat, meldet ein lokal installiertes `st-info --probe`
+*Found 0 stlink programmers*; das ist exklusiver Zugriff, kein Fehler. Ein `st-flash` auf dem
+eigenen Rechner genau in dem Moment, in dem der Browser das Gerät freigibt, kann die
+Protokoll-Zustandsmaschine der ST-Link aufhängen (einmal während der Verifikation beobachtet);
+nur ein physisches Aus- und Wiedereinstecken hilft dann.
+
+## Was verifiziert ist und was nicht
+
+Die Board-Bridge hat ihren Ende-zu-Ende-Hardware-Lauf am 2026-09-03 bestanden (Verbinden, Flash
+mit Verify und Boot, F5 mit Halt, Schritt, Registern und Breakpoint, Replug, Shim-Pfad) in einem
+Test-Workspace. Screenshots dieser Pfade im Labor-Workspace stehen noch aus; die Seiten sagen
+es, wo einer fehlt.

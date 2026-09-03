@@ -1,7 +1,7 @@
 ---
 title: Build and flash the board
 order: 2
-description: Run the task "CaDS: Build + Flash", connect the board in the browser and put your firmware on the chip
+description: "Run the task \"CaDS: Build + Flash\", connect the board in the browser and put your firmware on the chip"
 ---
 
 In this tutorial you build the firmware in the container and flash it to the board that is
@@ -9,11 +9,11 @@ plugged into **your** computer. The container has no USB access at all. The ST-L
 from your browser and bridged into the container; that is why the browser asks you to pick the
 device once.
 
-<div class="callout warn">
-The board bridge (the extensions <code>cads-probe</code> and <code>cads-board-bridge</code>) is being
-verified against real hardware while this page is written. Behaviour below follows the
-specification and the bridge's own code; screenshots of the board panel and the flash progress
-follow once the hardware run is recorded.
+<div class="callout">
+The flash path was verified end to end on 2026-09-03 with real Chrome, the ST-Link V2-1 and the
+ITSboard: a 327 088-byte image is written and verified in about 13 s and the board boots into
+its self-test. Screenshots of the board menu and the flash progress with hardware follow; the
+UI strings below are taken from the bridge.
 </div>
 
 ## What you need

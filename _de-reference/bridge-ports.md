@@ -25,7 +25,10 @@ die die USB- und Seriell-Verbindungen hält.
 | `POST /flash?addr=0x08000000` | Body: rohe Image-Bytes; löscht, programmiert und verifiziert; 4xx außerhalb des erlaubten Fensters |
 | `POST /reset` | Core zurücksetzen |
 | `POST /halt` | Core anhalten |
+| `POST /op` | eine Probe-Operation als JSON (Tests und Tooling) |
 | `POST /command` | ein Bridge-Kommando ausführen (Tests und Tooling); abschaltbar mit `cads.board.httpCommandsEnabled: false` |
+| `GET /log`, `GET /serial` | Bridge-Log und die letzten seriellen Zeilen |
+| `POST /erase` | immer `403 not permitted` (kein Mass-Erase) |
 
 ## GDB-Server (Port 3333)
 
@@ -33,7 +36,8 @@ Implementierte Pakete: `?`, `g`, `G`, `p`, `P`, `m`, `M`, `X`, `c`, `s`, `vCont?
 `Z0`–`Z4`/`z*` (Software- und Hardware-Breakpoints, Watchpoints), `k`, `D`, `qSupported`,
 `qAttached`, `qXfer:features:read` (Cortex-M4F-Target-Beschreibung),
 `qXfer:memory-map:read` (Flash `0x08000000` 2 MB in Sektoren, RAM `0x20000000` 192 KB, CCM
-`0x10000000` 64 KB), `vFlashErase`/`vFlashWrite`/`vFlashDone` (damit `load` in GDB über die
+`0x10000000` 64 KB, dazu der Peripherie-Bereich `0x40000000` und PPB/SCS bei `0xE0000000`, als
+RAM deklariert, damit GDB Register- und Peripherie-Reads zulässt), `vFlashErase`/`vFlashWrite`/`vFlashDone` (damit `load` in GDB über die
 Probe flasht), `qRcmd` (`monitor reset`, `monitor reset halt`, `monitor halt`), Ctrl-C zum
 Anhalten, No-Ack-Modus. Speicherlesungen werden gecacht, solange der Core angehalten ist, und
 bei run, step oder write verworfen. Alle Probe-Aufrufe sind serialisiert; ein Probe-Fehler

@@ -70,6 +70,11 @@ for url, md in pages.items():
         problems.append(f"{md}: missing front matter")
         continue
     keys = [ln.split(":", 1)[0].strip() for ln in fm.group(1).splitlines() if ":" in ln]
+    for ln in fm.group(1).splitlines():
+        k, _, v = ln.partition(":")
+        v = v.strip()
+        if ": " in v and not v.startswith(('"', "'")):
+            problems.append(f"{md}: front matter value of '{k}' contains ': ' and must be quoted")
     if md.relative_to(ROOT).parts[0].startswith("_"):
         missing = {"title", "order", "description"} - set(keys)
         extra = set(keys) - {"title", "order", "description"}

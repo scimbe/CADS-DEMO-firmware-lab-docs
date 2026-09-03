@@ -76,6 +76,18 @@ client that was killed mid-transfer (a page reload during a flash, a debug sessi
 hard). Unplug and replug the USB cable, unmount `NOD_F429ZI` on macOS, reconnect. See
 [Reconnect after a replug]({{ '/en/how-to/reconnect-after-replug/' | relative_url }}).
 
+### `st-info` on my own computer says "Found 0 stlink programmers"
+
+While the browser holds the ST-Link, no other program on your computer can open it; the local
+stlink tools see nothing. That is exclusive access, not a fault. Disconnect the board in the lab
+(status bar → *Trennen*) and the local tools see it again.
+
+### Do not run `st-flash` on your own computer while the lab is connected
+
+A local `st-flash reset` fired at the moment the browser released the device wedged the ST-Link
+during verification (`LIBUSB_ERROR_TIMEOUT`, then `chipid 0x000`). Use the lab's board menu for
+reset and flash; if you need the local tools, disconnect in the lab first and wait a second.
+
 ### The board shows wild LEDs after a replug (macOS)
 
 macOS wrote metadata to the `NOD_F429ZI` mass-storage drive and the ST-Link took it as

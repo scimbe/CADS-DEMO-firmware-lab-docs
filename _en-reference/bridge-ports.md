@@ -25,7 +25,10 @@ the USB and serial connections.
 | `POST /flash?addr=0x08000000` | body: raw image bytes; erases, programs and verifies; 4xx outside the allowed window |
 | `POST /reset` | reset the core |
 | `POST /halt` | halt the core |
+| `POST /op` | one probe operation as JSON (tests and tooling) |
 | `POST /command` | run a bridge command (tests and tooling); can be disabled with `cads.board.httpCommandsEnabled: false` |
+| `GET /log`, `GET /serial` | bridge log and recent serial lines |
+| `POST /erase` | always `403 not permitted` (no mass erase) |
 
 ## GDB server (port 3333)
 
@@ -33,7 +36,8 @@ Implemented packets: `?`, `g`, `G`, `p`, `P`, `m`, `M`, `X`, `c`, `s`, `vCont?`,
 `Z0`–`Z4`/`z*` (software and hardware breakpoints, watchpoints), `k`, `D`, `qSupported`,
 `qAttached`, `qXfer:features:read` (Cortex-M4F target description),
 `qXfer:memory-map:read` (flash `0x08000000` 2 MB in sectors, RAM `0x20000000` 192 KB, CCM
-`0x10000000` 64 KB), `vFlashErase`/`vFlashWrite`/`vFlashDone` (so `load` in GDB flashes through
+`0x10000000` 64 KB, plus the peripheral space `0x40000000` and the PPB/SCS at `0xE0000000`
+declared as RAM so GDB allows register and peripheral reads), `vFlashErase`/`vFlashWrite`/`vFlashDone` (so `load` in GDB flashes through
 the probe), `qRcmd` (`monitor reset`, `monitor reset halt`, `monitor halt`), Ctrl-C to halt,
 no-ack mode. Memory reads are cached while the core is halted and invalidated on run, step or
 write. All probe calls are serialised; a probe error answers `E01` and shows in the status bar.

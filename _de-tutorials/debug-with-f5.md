@@ -8,11 +8,12 @@ Debuggen funktioniert im Labor wie in einer Desktop-IDE: F5, Breakpoints in der 
 Debug-Toolbar, der Call-Stack, Register und die Peripherie-Ansicht aus der SVD-Datei. Der
 GDB-Server dahinter ist die Board-Bridge im Container, die die ST-Link in deinem Browser steuert.
 
-<div class="callout warn">
-Der Debug-Pfad läuft über den GDB-Server der Bridge, der zum Zeitpunkt dieser Seite gegen echte
-Hardware verifiziert wird. Der Ablauf unten folgt der Launch-Konfiguration im Image und dem
-Debug-Provider der Bridge. Screenshots einer laufenden Sitzung (Debug-Toolbar, XPeripherals mit
-Werten) folgen, sobald sie aufgezeichnet sind.
+<div class="callout">
+Der Debug-Pfad wurde am 2026-09-03 mit echtem Chrome und dem ITSboard verifiziert: Halt an
+<code>main</code>, Register, Step Over nach <code>cads_bringup_run</code> mit zwei Frames im
+Call-Stack und lokalen Variablen, ein beim Boot getroffener Breakpoint, das Lesen des
+CPUID-Registers, Continue und Stop. Ein Schritt dauert Ende-zu-Ende etwa 100 ms. Screenshots
+einer laufenden Sitzung im Labor-Workspace (Debug-Toolbar, XPeripherals mit Werten) folgen.
 </div>
 
 ## Was du brauchst
@@ -92,10 +93,10 @@ die RTOS-Task-Liste (mcu-debug.rtos-views), sobald der FreeRTOS-Scheduler läuft
 
 ## 5. Beenden
 
-Klicke den roten **Stop**-Button. Die Bridge gibt die Probe frei; die Statusleiste verliert die
-Markierung `GDB` und zeigt `angehalten` mit Warnfarbe, solange der Kern ohne angehängten
-Debugger angehalten ist. Klicke den Statusleisten-Eintrag und wähle *Weiterlaufen lassen* (oder
-*Reset*), damit die Firmware wieder läuft.
+Klicke den roten **Stop**-Button (Shift+F5). GDB hängt sich ab, die Bridge lässt das Target
+weiterlaufen, und die Firmware läuft auf dem Board weiter; die Statusleiste verliert die
+Markierung `GDB` und zeigt `läuft`. Nur wenn du den Kern selbst über das Board-Menü angehalten
+hast, bleibt er mit Warnfarbe angehalten, bis du dort *Weiterlaufen lassen* oder *Reset* wählst.
 
 Die zweite Konfiguration, **Attach CaDS Zero (Board im Browser, no flash)**, verbindet sich ohne
 Build und ohne Reset. Nutze sie, um eine laufende oder abgestürzte Firmware dort anzusehen, wo

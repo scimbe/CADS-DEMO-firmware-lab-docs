@@ -82,6 +82,19 @@ während eines Flash, eine hart beendete Debug-Sitzung). USB-Kabel ab- und wiede
 unter macOS `NOD_F429ZI` aushängen, neu verbinden. Siehe
 [Wiederverbinden nach Replug]({{ '/de/how-to/reconnect-after-replug/' | relative_url }}).
 
+### `st-info` auf meinem eigenen Rechner meldet „Found 0 stlink programmers“
+
+Solange der Browser die ST-Link hält, kann kein anderes Programm auf deinem Rechner sie öffnen;
+die lokalen stlink-Tools sehen nichts. Das ist exklusiver Zugriff, kein Fehler. Trenne das Board
+im Labor (Statusleiste → *Trennen*), dann sehen die lokalen Tools es wieder.
+
+### Kein `st-flash` auf dem eigenen Rechner, solange das Labor verbunden ist
+
+Ein lokales `st-flash reset`, das genau in dem Moment lief, in dem der Browser das Gerät
+freigab, hat während der Verifikation die ST-Link aufgehängt (`LIBUSB_ERROR_TIMEOUT`, danach
+`chipid 0x000`). Nutze für Reset und Flash das Board-Menü des Labors; brauchst du die lokalen
+Tools, trenne zuerst im Labor und warte eine Sekunde.
+
 ### Das Board zeigt nach einem Replug wild leuchtende LEDs (macOS)
 
 macOS hat Metadaten auf das Massenspeicher-Laufwerk `NOD_F429ZI` geschrieben, und die ST-Link

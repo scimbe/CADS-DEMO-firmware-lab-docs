@@ -1,7 +1,7 @@
 ---
 title: Bauen und auf das Board flashen
 order: 2
-description: Den Task "CaDS: Build + Flash" ausführen, das Board im Browser verbinden und deine Firmware auf den Chip bringen
+description: "Den Task \"CaDS: Build + Flash\" ausführen, das Board im Browser verbinden und deine Firmware auf den Chip bringen"
 ---
 
 In diesem Tutorial baust du die Firmware im Container und flashst sie auf das Board, das an
@@ -9,11 +9,11 @@ In diesem Tutorial baust du die Firmware im Container und flashst sie auf das Bo
 deinem Browser gesteuert und in den Container gebrückt; deshalb bittet dich der Browser einmal,
 das Gerät auszuwählen.
 
-<div class="callout warn">
-Die Board-Bridge (die Extensions <code>cads-probe</code> und <code>cads-board-bridge</code>) wird
-zum Zeitpunkt dieser Seite gegen echte Hardware verifiziert. Das beschriebene Verhalten folgt der
-Spezifikation und dem Code der Bridge; Screenshots des Board-Panels und des Flash-Fortschritts
-folgen, sobald der Hardware-Lauf aufgezeichnet ist.
+<div class="callout">
+Der Flash-Pfad wurde am 2026-09-03 Ende-zu-Ende mit echtem Chrome, der ST-Link V2-1 und dem
+ITSboard verifiziert: ein Image von 327 088 Bytes wird in etwa 13 s geschrieben und verifiziert,
+und das Board bootet in seinen Selbsttest. Screenshots des Board-Menüs und des
+Flash-Fortschritts mit Hardware folgen; die UI-Texte unten stammen aus der Bridge.
 </div>
 
 ## Was du brauchst

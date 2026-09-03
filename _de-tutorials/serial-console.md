@@ -9,10 +9,12 @@ Browser diesen Port (WebSerial), und im Container erscheint er als Terminal mit 
 **CaDS Board Console**. Darüber liest du den Boot-Selbsttest und nutzt die firmwareeigene
 Diagnosekonsole.
 
-<div class="callout warn">
-Der Konsolen-Pfad (WebSerial im Browser, serielles TCP und das Terminal im Container) gehört zur
-Board-Bridge, die zum Zeitpunkt dieser Seite gegen echte Hardware verifiziert wird. Ein
-Screenshot des Konsolen-Terminals folgt, sobald er aufgezeichnet ist.
+<div class="callout">
+Anders als die USB-Freigabe lässt sich die Freigabe des seriellen Ports nicht vorab hinterlegen:
+Chrome vergisst WebSerial-Berechtigungen, die nicht über seinen eigenen Dialog erteilt wurden.
+Die Konsole braucht deshalb <strong>einen</strong> manuellen Klick im Geräte-Dialog je
+Browser-Profil; danach wird der Port über Reloads hinweg ohne Dialog wieder geöffnet. Ein
+Screenshot des Konsolen-Terminals mit Hardware folgt.
 </div>
 
 ## 1. Die Konsole öffnen
