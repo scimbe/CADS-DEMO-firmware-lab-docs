@@ -74,6 +74,21 @@ beantwortet Fragen nur aus indiziertem Material.
   </a>
 </div>
 
+## Die beiden anderen Tutoren
+
+Derselbe Tutor und dasselbe Kursformat tragen zwei Sprachkurse, beide ohne Hardware.
+
+<div class="index-list">
+  <a class="index-item" href="{{ '/de/rust/' | relative_url }}">
+    <strong>Rust-Tutor →</strong>
+    <span>31 Schritte von der Eigentümerschaft bis zum eigenen Werkzeug — ganz ohne Board</span>
+  </a>
+  <a class="index-item" href="{{ '/de/javascript/' | relative_url }}">
+    <strong>JavaScript-Tutor →</strong>
+    <span>31 Schritte von Werten und Typen bis zum Abschlussprojekt, das Sie selbst testen</span>
+  </a>
+</div>
+
 ## Wie diese Seite aufgebaut ist
 
 - **Tutorials** — der Reihe nach lernen, durch Tun.

@@ -73,6 +73,21 @@ work against the repository and the board, and answers questions only from index
   </a>
 </div>
 
+## The other two tutors
+
+The same tutor and the same course format run two language tracks, both without hardware.
+
+<div class="index-list">
+  <a class="index-item" href="{{ '/en/rust/' | relative_url }}">
+    <strong>Rust Tutor →</strong>
+    <span>31 steps from ownership to a tool of your own — no board needed</span>
+  </a>
+  <a class="index-item" href="{{ '/en/javascript/' | relative_url }}">
+    <strong>JavaScript Tutor →</strong>
+    <span>31 steps from values and types to a capstone you test yourself</span>
+  </a>
+</div>
+
 ## How this site is organised
 
 - **Tutorials** — learn by doing, in order.
