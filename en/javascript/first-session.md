@@ -13,7 +13,7 @@ hardware.
 
 ## 1. Open the link you were given
 
-Your teacher hands out one link per track. The Rust link ends in
+Your teacher hands out one link per track. The JavaScript link ends in
 `?folder=/home/coder/workspace/javascript-foundations`.
 
 **That part matters.** It decides which course opens. A bare address without it reopens whatever
