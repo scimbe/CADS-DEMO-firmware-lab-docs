@@ -47,6 +47,10 @@ def page_url(path: Path) -> str | None:
         return f"/{m.group(1)}/{m.group(2)}/{path.stem}/"
     if len(parts) >= 2 and parts[0] in LANGS and parts[-1] == "index.md":
         return "/" + "/".join(parts[:-1]) + "/"
+    # Track pages (en/rust/first-session.md and friends) carry an explicit permalink and live
+    # in a plain folder rather than a collection.
+    if len(parts) >= 3 and parts[0] in LANGS and parts[-1].endswith(".md"):
+        return "/" + "/".join(parts[:-1]) + "/" + path.stem + "/"
     if rel == Path("index.md"):
         return "/"
     return None
