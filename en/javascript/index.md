@@ -35,6 +35,10 @@ No prior programming experience is assumed, and no earlier course is required.
     <strong>When a check will not pass →</strong>
     <span>Reading test output, the hint ladder, and what to do when you are stuck</span>
   </a>
+  <a class="index-item" href="{{ '/en/javascript/how-you-are-assessed/' | relative_url }}">
+    <strong>How the tutor judges your work →</strong>
+    <span>Three levels of competence, what counts as evidence, and what you take away</span>
+  </a>
 </div>
 
 ## The course at a glance

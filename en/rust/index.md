@@ -35,6 +35,10 @@ The Rust track needs no hardware. Everything happens inside the container.
     <strong>When a check will not pass →</strong>
     <span>Reading compiler errors, the hint ladder, and what to do when you are stuck</span>
   </a>
+  <a class="index-item" href="{{ '/en/rust/how-you-are-assessed/' | relative_url }}">
+    <strong>How the tutor judges your work →</strong>
+    <span>Three levels of competence, what counts as evidence, and what you take away</span>
+  </a>
 </div>
 
 ## The course at a glance

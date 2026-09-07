@@ -35,6 +35,10 @@ Der Rust-Kurs braucht keine Hardware. Alles geschieht im Container.
     <strong>Wenn eine Prüfung nicht bestehen will →</strong>
     <span>Compiler-Fehler lesen, die Hinweisleiter, und was hilft, wenn es hakt</span>
   </a>
+  <a class="index-item" href="{{ '/de/rust/how-you-are-assessed/' | relative_url }}">
+    <strong>Wie der Tutor Ihre Arbeit bewertet →</strong>
+    <span>Drei Kompetenzstufen, was als Beleg zählt, und was Sie am Ende mitnehmen</span>
+  </a>
 </div>
 
 ## Der Kurs auf einen Blick

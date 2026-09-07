@@ -35,6 +35,10 @@ Programmiererfahrung wird nicht vorausgesetzt, ein vorheriger Kurs ist nicht nö
     <strong>Wenn eine Prüfung nicht bestehen will →</strong>
     <span>Testausgaben lesen, die Hinweisleiter, und was hilft, wenn es hakt</span>
   </a>
+  <a class="index-item" href="{{ '/de/javascript/how-you-are-assessed/' | relative_url }}">
+    <strong>Wie der Tutor Ihre Arbeit bewertet →</strong>
+    <span>Drei Kompetenzstufen, was als Beleg zählt, und was Sie am Ende mitnehmen</span>
+  </a>
 </div>
 
 ## Der Kurs auf einen Blick
