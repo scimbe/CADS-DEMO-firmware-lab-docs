@@ -51,12 +51,19 @@ objective until something has actually graded it.
 
 ## When the model is busy
 
-The model answers one request at a time. When thirty people answer the same question at once, a
-queue forms. The tutor then tells you that you are waiting, how many are ahead of you and roughly
-how much longer it will take — and after a short while offers to stop waiting and use the rubric as
-a self-check instead.
+The model answers one request at a time. When thirty people answer the same question at once it
+gets tight, and one of two things happens:
 
-The time shown is an estimate from measured throughput, not a promise.
+**Your request runs, but slowly.** The tutor shows you that it is waiting for the grading, and how
+long it has been waiting. If it takes unusually long, it offers to stop waiting and use the rubric
+as a self-check instead.
+
+**Your request is turned away.** When the model is saturated the tutor says so **immediately**
+rather than leaving you to wait: how busy it is, when a new attempt makes sense — and it puts the
+same rubric in front of you for a self-check. Being turned away reads worse than a spinner, but it
+is better: you know where you stand and you can carry on.
+
+The time shown comes from the model service itself and is an estimate, not a promise.
 
 ## What you take away
 

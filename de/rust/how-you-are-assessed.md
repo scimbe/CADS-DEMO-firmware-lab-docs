@@ -54,11 +54,18 @@ grün. Er wird dabei sichtbar als **selbst eingeschätzt** markiert, und die Kom
 ## Wenn das Modell beschäftigt ist
 
 Das Modell beantwortet Anfragen nacheinander. Beantworten dreißig Kursteilnehmer gleichzeitig
-dieselbe Frage, entsteht eine Warteschlange. Der Tutor sagt Ihnen dann, dass Sie warten, wie viele
-vor Ihnen stehen und wie lange es voraussichtlich noch dauert — und bietet nach kurzer Zeit an,
-**nicht** zu warten und stattdessen die Rubrik zur Selbstkontrolle zu nehmen.
+dieselbe Frage, wird es eng. Dann geschieht eines von zweien:
 
-Die Zeitangabe ist eine Schätzung aus der gemessenen Bearbeitungsdauer, keine Zusage.
+**Ihre Anfrage läuft, dauert aber.** Der Tutor zeigt Ihnen, dass er auf die Bewertung wartet, und
+wie lange bereits. Dauert es ungewöhnlich lange, bietet er an, **nicht** weiter zu warten und
+stattdessen die Rubrik zur Selbstkontrolle zu nehmen.
+
+**Ihre Anfrage wird abgewiesen.** Ist das Modell ausgelastet, sagt der Tutor das **sofort**, statt
+Sie warten zu lassen: wie ausgelastet es gerade ist, wann ein neuer Versuch sinnvoll ist — und er
+legt Ihnen dieselbe Rubrik zur Selbstkontrolle vor. Sofort abgewiesen zu werden ist unangenehmer
+zu lesen, aber besser als ein Wartekringel: Sie wissen, woran Sie sind, und kommen weiter.
+
+Die Zeitangabe stammt vom Modelldienst selbst und ist eine Schätzung, keine Zusage.
 
 ## Was Sie am Ende mitnehmen
 
