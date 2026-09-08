@@ -20,7 +20,7 @@ dorthin. Für jedes Lernziel führt der Tutor eine von drei Stufen:
 |---|---|
 | **berührt** | Das Lernziel kam vor, irgendein Beleg liegt vor. Schaltet nichts frei. |
 | **geübt** | Ein starker Beleg oder zwei mittlere. Erst wenn jedes Lernziel eines Moduls hier steht, gilt das Modul als abgeschlossen. |
-| **nachgewiesen** | Ein starker Beleg **und** ein bestandener Abruf aus einem **späteren** Modul. |
+| **nachgewiesen** | Ein bestandener Abruf aus einem **späteren** Modul, **und zusätzlich dazu** ein starker Beleg aus der Arbeit selbst. Der Abruf allein genügt nicht: Ein Ereignis kann nicht zugleich die Arbeit und der Nachweis sein, dass sie einen Abstand überstanden hat. |
 
 Die dritte Stufe ist die eigentliche Aussage. Sie bedeutet nicht „hat es einmal hinbekommen",
 sondern: konnte es später noch einmal, aus dem Gedächtnis, ohne die Aufgabe vor Augen.

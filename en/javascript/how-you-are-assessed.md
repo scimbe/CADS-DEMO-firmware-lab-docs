@@ -20,7 +20,7 @@ each objective the tutor keeps one of three levels:
 |---|---|
 | **touched** | The objective came up and some evidence exists. Unlocks nothing. |
 | **practised** | One strong piece of evidence, or two medium ones. A module counts as finished once every objective in it is at least here. |
-| **demonstrated** | A strong piece of evidence **and** a recall passed in a **later** module. |
+| **demonstrated** | A recall passed in a **later** module, **and on top of it** a strong piece of evidence from the work itself. The recall alone is not enough: one event cannot be both the work and the proof that the work survived a delay. |
 
 The third level is the one that makes a claim. It does not mean "managed it once"; it means: could
 do it again later, from memory, without the exercise in front of you.
